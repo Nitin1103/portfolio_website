@@ -1,5 +1,5 @@
 import React from "react";
-import { Mail, ArrowRight } from "lucide-react";
+import { Mail, ArrowRight, Clock, Globe } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/Icons";
 import { portfolioData } from "@/data/portfolio";
 import { Container } from "@/components/ui/Container";
@@ -18,8 +18,8 @@ export function Contact() {
         <div className="max-w-3xl mx-auto text-center space-y-8">
           <SectionHeading
             tag="07 // GET IN TOUCH"
-            title="Let's build something useful."
-            subtitle="Whether you're hiring for a software engineering role, collaborating on a cloud or AI architecture, or just want to talk tech — my inbox is open."
+            title="Let's build something reliable and useful."
+            subtitle="Whether you are hiring for a software engineering role, architecting a high-throughput backend, or exploring applied AI integrations — I would love to connect."
             className="text-center [&>div]:justify-center [&>p]:mx-auto"
           />
 
@@ -38,23 +38,36 @@ export function Contact() {
             <CopyEmailButton email={personal.socials.email} />
           </div>
 
+          {/* Availability & Location Metadata */}
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-mono text-zinc-500 dark:text-zinc-400 pt-2">
+            <span className="flex items-center gap-1.5">
+              <Clock className="w-3.5 h-3.5 text-zinc-400" />
+              <span>Response time: &lt;24 hours</span>
+            </span>
+            <span>•</span>
+            <span className="flex items-center gap-1.5">
+              <Globe className="w-3.5 h-3.5 text-zinc-400" />
+              <span>Based in India (UTC+5:30) • Remote friendly</span>
+            </span>
+          </div>
+
           {/* Direct Social Links Bar */}
           <div className="pt-8 border-t border-zinc-200 dark:border-zinc-800/80 flex items-center justify-center gap-6">
             <a
               href={personal.socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-xs font-mono text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+              className="flex items-center gap-2 text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors"
             >
               <GithubIcon className="w-4 h-4" />
-              <span>GitHub</span>
+              <span>GitHub (Nitin1103)</span>
             </a>
             <span className="text-zinc-300 dark:text-zinc-700">•</span>
             <a
               href={personal.socials.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-xs font-mono text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+              className="flex items-center gap-2 text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors"
             >
               <LinkedinIcon className="w-4 h-4" />
               <span>LinkedIn</span>

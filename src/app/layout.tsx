@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: "Nitin Sharma — Software Engineer",
     description:
       "Software Engineer building reliable software, cloud systems, and AI-powered experiences.",
-    url: "https://nitinsharma.dev",
+    url: "https://nitin1103.github.io/portfolio_website/",
     siteName: "Nitin Sharma Portfolio",
     locale: "en_US",
     type: "website",
@@ -43,6 +43,28 @@ export const metadata: Metadata = {
     description:
       "Software Engineer building reliable software, cloud systems, and AI-powered experiences.",
   },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Nitin Sharma",
+  jobTitle: "Software Engineer",
+  url: "https://nitin1103.github.io/portfolio_website/",
+  sameAs: [
+    "https://github.com/Nitin1103",
+    "https://linkedin.com",
+  ],
+  knowsAbout: [
+    "Software Engineering",
+    "Backend Architecture",
+    "Cloud Systems",
+    "FastAPI",
+    "Python",
+    "AWS",
+    "Artificial Intelligence",
+    "Retrieval-Augmented Generation",
+  ],
 };
 
 export default function RootLayout({
@@ -75,8 +97,18 @@ export default function RootLayout({
             `,
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body className="min-h-screen bg-[var(--background)] text-[var(--foreground)] antialiased font-sans transition-colors duration-200">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:px-3.5 focus:py-2 focus:bg-cyan-500 focus:text-black focus:text-xs focus:font-mono focus:rounded-md focus:shadow-md"
+        >
+          Skip to main content
+        </a>
         {children}
       </body>
     </html>

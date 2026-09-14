@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { Code, Server, Cloud, Sparkles, Layout } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
 import { Container } from "@/components/ui/Container";
@@ -14,6 +16,12 @@ const categoryIcons: Record<string, React.ReactNode> = {
 
 export function Skills() {
   const { skillCategories } = portfolioData;
+  const [activeCategory, setActiveCategory] = useState<string>("all");
+
+  const displayedCategories =
+    activeCategory === "all"
+      ? skillCategories
+      : skillCategories.filter((cat) => cat.id === activeCategory);
 
   return (
     <section
@@ -23,20 +31,49 @@ export function Skills() {
       <Container>
         <SectionHeading
           tag="04 // EXPERTISE"
-          title="Technical Skills"
-          subtitle="A structured overview of the tools, frameworks, and system capabilities I use to deliver production software."
+          title="Technical Skills & Ecosystem"
+          subtitle="A structured overview of the programming languages, cloud frameworks, and AI paradigms I utilize to build production software."
         />
 
+        {/* Category Tabs */}
+        <div className="flex flex-wrap items-center gap-2 mb-8 font-mono text-xs">
+          <button
+            onClick={() => setActiveCategory("all")}
+            className={`px-3 py-1.5 rounded-lg border transition-all ${
+              activeCategory === "all"
+                ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 border-zinc-900 dark:border-zinc-100 font-medium"
+                : "bg-white dark:bg-zinc-900/60 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-800 hover:text-zinc-950 dark:hover:text-zinc-100"
+            }`}
+          >
+            All Disciplines ({skillCategories.reduce((acc, c) => acc + c.skills.length, 0)})
+          </button>
+          {skillCategories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`px-3 py-1.5 rounded-lg border transition-all flex items-center gap-1.5 ${
+                activeCategory === cat.id
+                  ? "bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-950 border-zinc-900 dark:border-zinc-100 font-medium"
+                  : "bg-white dark:bg-zinc-900/60 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-800 hover:text-zinc-950 dark:hover:text-zinc-100"
+              }`}
+            >
+              {categoryIcons[cat.id]}
+              <span>{cat.title}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Skills Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillCategories.map((category) => (
+          {displayedCategories.map((category) => (
             <div
               key={category.id}
-              className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-900/40 p-6 flex flex-col justify-between hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-white dark:hover:bg-zinc-900/60 transition-all shadow-xs"
+              className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white/90 dark:bg-zinc-900/40 p-6 flex flex-col justify-between hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-white dark:hover:bg-zinc-900/60 transition-all shadow-xs group"
             >
               <div className="space-y-3">
                 {/* Category Header with Icon */}
                 <div className="flex items-center gap-2.5">
-                  <div className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700/60">
+                  <div className="p-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700/60 group-hover:scale-105 transition-transform">
                     {categoryIcons[category.id] || (
                       <Code className="w-4 h-4 text-zinc-500 dark:text-zinc-400" />
                     )}
@@ -56,11 +93,11 @@ export function Skills() {
               </div>
 
               {/* Skill Pills */}
-              <div className="pt-5 flex flex-wrap gap-2">
+              <div className="pt-6 flex flex-wrap gap-2">
                 {category.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-100 dark:bg-zinc-950/70 border border-zinc-200 dark:border-zinc-800/90 text-zinc-700 dark:text-zinc-300 hover:border-zinc-300 dark:hover:border-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors"
+                    className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-100 dark:bg-zinc-950/70 border border-zinc-200 dark:border-zinc-800/90 text-zinc-700 dark:text-zinc-300 hover:border-cyan-400 dark:hover:border-cyan-500/50 hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors"
                   >
                     {skill}
                   </span>

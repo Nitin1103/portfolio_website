@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-[var(--background)] text-[var(--foreground)] font-sans selection:bg-cyan-500/20 selection:text-cyan-700 dark:selection:text-cyan-200 transition-colors duration-200">
       <Navbar />
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         <Hero />
         <About />
         <Projects />

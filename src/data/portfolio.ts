@@ -14,10 +14,10 @@ export const portfolioData: PortfolioData = {
       available: true,
     },
     socials: {
-      github: "https://github.com",
-      linkedin: "https://linkedin.com",
-      email: "contact@nitinsharma.dev",
-      resume: "/resume.pdf",
+      github: "https://github.com/Nitin1103",
+      linkedin: "https://www.linkedin.com/in/nitin-sharma-992972219/",
+      email: "nitinisatwork@gmail.com",
+      resume: "#",
     },
   },
 
